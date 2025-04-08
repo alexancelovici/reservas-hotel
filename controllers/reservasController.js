@@ -12,9 +12,52 @@ const crearReserva = (req, res) => {
   res.status(201).json(nuevaReserva);
 };
 
-// Ver todas
+// Ver todas (con filtros opcionales)
 const obtenerReservas = (req, res) => {
-  res.json(reservas);
+  let resultados = reservas;
+
+  const {
+    hotel,
+    estado,
+    tipo_habitacion,
+    num_huespedes,
+    fecha_inicio,
+    fecha_fin,
+  } = req.query;
+
+  if (hotel) {
+    resultados = resultados.filter((r) =>
+      r.hotel.toLowerCase().includes(hotel.toLowerCase())
+    );
+  }
+
+  if (estado) {
+    resultados = resultados.filter(
+      (r) => r.estado.toLowerCase() === estado.toLowerCase()
+    );
+  }
+
+  if (tipo_habitacion) {
+    resultados = resultados.filter(
+      (r) =>
+        r.tipo_habitacion.toLowerCase() === tipo_habitacion.toLowerCase()
+    );
+  }
+
+  if (num_huespedes) {
+    resultados = resultados.filter(
+      (r) => r.num_huespedes == Number(num_huespedes)
+    );
+  }
+
+  if (fecha_inicio && fecha_fin) {
+    resultados = resultados.filter(
+      (r) =>
+        r.fecha_inicio >= fecha_inicio && r.fecha_fin <= fecha_fin
+    );
+  }
+
+  res.json(resultados);
 };
 
 // Ver una por ID
@@ -55,10 +98,9 @@ const eliminarReserva = (req, res) => {
 };
 
 module.exports = {
-    crearReserva,
-    obtenerReservas,
-    obtenerReservaPorId,
-    actualizarReserva,
-    eliminarReserva,
-  };
-  
+  crearReserva,
+  obtenerReservas,
+  obtenerReservaPorId,
+  actualizarReserva,
+  eliminarReserva,
+};
