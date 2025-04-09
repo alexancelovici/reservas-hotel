@@ -1,11 +1,54 @@
 const { v4: uuidv4 } = require("uuid");
 let reservas = require("../data/reservas");
 
-// Crear reserva
+// Crear reserva con validaciones
 const crearReserva = (req, res) => {
+  const {
+    hotel,
+    tipo_habitacion,
+    num_huespedes,
+    fecha_inicio,
+    fecha_fin,
+    estado,
+  } = req.body;
+
+  // Validación de campos obligatorios
+  if (
+    !hotel ||
+    !tipo_habitacion ||
+    !num_huespedes ||
+    !fecha_inicio ||
+    !fecha_fin ||
+    !estado
+  ) {
+    return res
+      .status(400)
+      .json({ mensaje: "Todos los campos son obligatorios." });
+  }
+
+  // Validar tipo de num_huespedes
+  if (typeof num_huespedes !== "number" || num_huespedes <= 0) {
+    return res.status(400).json({
+      mensaje: "El número de huéspedes debe ser un número mayor a 0.",
+    });
+  }
+
+  // Validar estado
+  const estadosPermitidos = ["pendiente", "pagado", "cancelado"];
+  if (!estadosPermitidos.includes(estado.toLowerCase())) {
+    return res.status(400).json({
+      mensaje: "El estado debe ser: pendiente, pagado o cancelado.",
+    });
+  }
+
   const nuevaReserva = {
     id: uuidv4(),
-    ...req.body,
+    hotel,
+    tipo_habitacion,
+    num_huespedes,
+    fecha_inicio,
+    fecha_fin,
+    estado: estado.toLowerCase(),
   };
 
   reservas.push(nuevaReserva);
