@@ -1,10 +1,10 @@
-# 📘 Proyecto: Sistema de Reservas Hoteleras
+# 📘 Project: Hotel Reservation System
 
-Este es un sistema de gestión de reservas hoteleras desarrollado con **Node.js** y **Express.js**, que permite realizar operaciones CRUD, aplicar filtros avanzados y consultar la documentación vía Swagger.
+This is a hotel reservation management system built with **Node.js** and **Express.js**. It supports CRUD operations, advanced filters, and API documentation through Swagger.
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## 🚀 Technologies Used
 
 - Node.js
 - Express.js
@@ -14,84 +14,98 @@ Este es un sistema de gestión de reservas hoteleras desarrollado con **Node.js*
 
 ---
 
-## 📂 Estructura del proyecto
+## 📂 Project Structure
 
-reservas-hotel/ ├── controllers/ │ └── reservasController.js ├── data/ │ └── reservas.js ├── routes/ │ └── reservasRoutes.js ├── .env ├── .gitignore ├── package.json ├── server.js
+```text
+reservas-hotel/
+├── controllers/
+│   └── reservasController.js
+├── data/
+│   └── reservas.js
+├── routes/
+│   └── reservasRoutes.js
+├── .env.example
+├── .gitignore
+├── package.json
+└── server.js
+```
 
 ---
 
-## 🔧 Cómo ejecutar el proyecto
+## 🔧 How to Run the Project
 
-1. Clona el repositorio  
-   `git clone <url-del-repo>`
+1. Clone the repository  
+   `git clone <repo-url>`
 
-2. Instala dependencias  
+2. Install dependencies  
    `npm install`
 
-3. Crea un archivo `.env` y define el puerto (por ejemplo):  
+3. Create a `.env` file and define the port, for example:  
+   `PORT=3000`
 
-4. Ejecuta el servidor  
-`node server.js`
+4. Run the server  
+   `node server.js`
 
 ---
 
-## 📬 Endpoints principales
+## 📬 Main Endpoints
 
-Todos los endpoints están bajo:  
+All endpoints are under:  
+`/api/reservas`
 
 ### 🟢 CRUD
 
-| Método | Endpoint              | Descripción                         |
-|--------|------------------------|-------------------------------------|
-| POST   | `/`                    | Crear nueva reserva                 |
-| GET    | `/`                    | Obtener todas las reservas          |
-| GET    | `/:id`                 | Obtener una reserva por ID          |
-| PUT    | `/:id`                 | Actualizar reserva por ID           |
-| DELETE | `/:id`                 | Eliminar reserva por ID             |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/` | Create a new reservation |
+| GET | `/` | Get all reservations |
+| GET | `/:id` | Get a reservation by ID |
+| PUT | `/:id` | Update a reservation by ID |
+| DELETE | `/:id` | Delete a reservation by ID |
 
 ---
 
-### 🔍 Filtros disponibles (query params)
+### 🔍 Available Filters (query params)
 
-| Filtro             | Ejemplo                                         |
-|--------------------|-------------------------------------------------|
-| hotel              | `/api/reservas?hotel=Paraíso`                   |
-| estado             | `/api/reservas?estado=pendiente`               |
-| tipo_habitacion    | `/api/reservas?tipo_habitacion=suite`          |
-| num_huespedes      | `/api/reservas?num_huespedes=3`                |
-| rango de fechas    | `/api/reservas?fecha_inicio=2025-05-01&fecha_fin=2025-05-10` |
-
----
-
-## ✅ Validaciones implementadas
-
-- Todos los campos obligatorios deben estar presentes al crear una reserva
-- `num_huespedes` debe ser un número mayor a 0
-- El estado debe ser uno de: `"pendiente"`, `"pagado"`, `"cancelado"`
+| Filter | Example |
+|--------|---------|
+| hotel | `/api/reservas?hotel=Paraiso` |
+| estado | `/api/reservas?estado=pendiente` |
+| tipo_habitacion | `/api/reservas?tipo_habitacion=suite` |
+| num_huespedes | `/api/reservas?num_huespedes=3` |
+| date range | `/api/reservas?fecha_inicio=2025-05-01&fecha_fin=2025-05-10` |
 
 ---
 
-## 📘 Documentación Swagger
+## ✅ Implemented Validations
 
-La documentación de la API está disponible en:  
-
-Incluye definición de todos los endpoints con ejemplo de parámetros.
+- All required fields must be present when creating a reservation
+- `num_huespedes` must be a number greater than 0
+- Status must be one of: `"pendiente"`, `"pagado"`, `"cancelado"`
 
 ---
 
-## ✈️ (Opcional) Despliegue en Render
+## 📘 Swagger Documentation
 
-Si querés subirlo:
+The API documentation is available at:  
+`/api-docs`
 
-1. Subí el código a GitHub
-2. Creá cuenta en https://render.com
-3. Conectá tu repo y seleccioná:  
+It includes definitions for all endpoints with example parameters.
+
+---
+
+## ✈️ Optional Render Deployment
+
+If you want to deploy it:
+
+1. Push the code to GitHub
+2. Create an account at https://render.com
+3. Connect your repo and select:  
    - Start command: `node server.js`
-   - Environment: `PORT` con valor `3000`
+   - Environment: `PORT` with value `3000`
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
 - **alexancelovici**
-
