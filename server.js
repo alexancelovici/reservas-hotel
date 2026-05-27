@@ -1,6 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const reservasRoutes = require("./routes/reservasRoutes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./docs/swagger");
 
 dotenv.config();
 
@@ -14,6 +16,7 @@ app.get("/", (req, res) => {
   
 // Rutas
 app.use("/api/reservas", reservasRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Servidor en marcha
 app.listen(PORT, () => {
